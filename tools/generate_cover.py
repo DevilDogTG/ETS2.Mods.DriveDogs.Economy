@@ -12,7 +12,12 @@ logo.png's own tones.
 The version badge is read from manifest.sii's package_version, so the cover
 always matches the build - pack.config.json's prePack runs this before every
 pack.
+
+The game badge (bottom-left, one colour per game so the ETS2 and ATS covers
+differ at thumbnail size) reads the game from pack.config.json, so it can't
+disagree with the pack.
 """
+import json
 import random
 import re
 from pathlib import Path
@@ -22,6 +27,7 @@ ROOT = Path(__file__).resolve().parent.parent
 LOGO_PATH = ROOT / "logo.png"
 OUT_PATH = ROOT / "src" / "cover.jpg"
 MANIFEST_PATH = ROOT / "src" / "manifest.sii"
+PACK_CONFIG_PATH = ROOT / "pack.config.json"
 
 SCALE = 4
 FINAL_SIZE = (276, 162)
@@ -41,6 +47,9 @@ COIN_COLOR = (255, 196, 84)
 COIN_RIM_COLOR = (168, 122, 40)
 BADGE_COLOR = (255, 196, 84)
 BADGE_TEXT_COLOR = (20, 16, 10)
+# Same values as the DriveDogs family reference (DriveDogs Pets): ETS2 blue, ATS red.
+GAME_BADGES = {"ets2": ("ETS2", (40, 110, 210)), "ats": ("ATS", (200, 45, 45))}
+GAME_TEXT_COLOR = (255, 255, 255)
 
 
 def read_version():
@@ -48,6 +57,13 @@ def read_version():
     if not m:
         raise SystemExit(f"No package_version in {MANIFEST_PATH}")
     return m.group(1)
+
+
+def read_game():
+    game = json.loads(PACK_CONFIG_PATH.read_text(encoding="utf-8-sig")).get("game", "ets2")
+    if game not in GAME_BADGES:
+        raise SystemExit(f"{PACK_CONFIG_PATH} game {game!r}: no badge defined")
+    return game
 
 
 def make_background(size):
@@ -102,8 +118,9 @@ def add_skyline(img):
 
 
 def add_money_motif(img):
-    """Subtle glowing coin stacks tucked into the bottom corners, clear of
-    the road, logo, and text - a quiet nod to the mod's economy theme."""
+    """Subtle glowing coin stacks tucked into the lower right, clear of the
+    road, logo, and text - a quiet nod to the mod's economy theme. The
+    bottom-left corner is reserved for the game badge."""
     w, h = img.size
 
     def coin_stack(cx, cy, r, count):
@@ -121,7 +138,7 @@ def add_money_motif(img):
         base = Image.alpha_composite(base, layer)
         return base.convert("RGB")
 
-    img = coin_stack(cx=w * 0.10, cy=h * 0.90, r=w * 0.024, count=4)
+    img = coin_stack(cx=w * 0.80, cy=h * 0.90, r=w * 0.024, count=4)
     img = coin_stack(cx=w * 0.925, cy=h * 0.91, r=w * 0.020, count=3)
     return img
 
@@ -226,36 +243,37 @@ def add_text(img):
     return img
 
 
-def add_version_badge(img, version):
-    """Amber pill in the empty top-right corner - clear of the logo, title,
-    skyline and coins, and still legible at the final 276x162 size."""
+def pill(img, text, fill, text_fill, anchor):
+    """A rounded pill holding `text`; anchor = ("right", "top") for the version, ("left", "bottom") for the
+    game - legible at the final 276x162 size."""
     draw = ImageDraw.Draw(img, "RGBA")
     w, h = img.size
-    text = f"v{version}"
     font = ImageFont.truetype(FONT_BOLD, int(h * 0.06))
     bbox = draw.textbbox((0, 0), text, font=font)
-    pad_x, pad_y = h * 0.02, h * 0.015
-    x1, y0 = w - h * 0.03, h * 0.03
-    x0 = x1 - (bbox[2] - bbox[0]) - 2 * pad_x
-    y1 = y0 + (bbox[3] - bbox[1]) + 2 * pad_y
-    draw.rounded_rectangle([x0, y0, x1, y1], radius=(y1 - y0) / 2, fill=(*BADGE_COLOR, 235))
-    draw.text((x0 + pad_x - bbox[0], y0 + pad_y - bbox[1]), text, font=font, fill=BADGE_TEXT_COLOR)
+    pad_x, pad_y, margin = h * 0.02, h * 0.015, h * 0.03
+    pw, ph = (bbox[2] - bbox[0]) + 2 * pad_x, (bbox[3] - bbox[1]) + 2 * pad_y
+    x0 = w - margin - pw if anchor[0] == "right" else margin
+    y0 = margin if anchor[1] == "top" else h - margin - ph
+    draw.rounded_rectangle([x0, y0, x0 + pw, y0 + ph], radius=ph / 2, fill=(*fill, 235))
+    draw.text((x0 + pad_x - bbox[0], y0 + pad_y - bbox[1]), text, font=font, fill=text_fill)
     return img
 
 
 def main():
-    version = read_version()
+    version, game = read_version(), read_game()
     img = make_background(CANVAS_SIZE)
     img = add_skyline(img)
     img = add_road(img)
     img = add_money_motif(img)
     img = paste_logo(img)
     img = add_text(img)
-    img = add_version_badge(img, version)
+    img = pill(img, f"v{version}", BADGE_COLOR, BADGE_TEXT_COLOR, ("right", "top"))
+    label, colour = GAME_BADGES[game]
+    img = pill(img, label, colour, GAME_TEXT_COLOR, ("left", "bottom"))
     img = img.resize(FINAL_SIZE, Image.LANCZOS)
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     img.save(OUT_PATH, "JPEG", quality=92)
-    print(f"Wrote {OUT_PATH} ({img.size[0]}x{img.size[1]}, v{version})")
+    print(f"Wrote {OUT_PATH} ({img.size[0]}x{img.size[1]}, v{version}, {label})")
 
 
 if __name__ == "__main__":
