@@ -11,10 +11,10 @@ used_vehicle_assortment_config : .config
 	truck_expiration_game_time_min: 2880	# 2 days (vanilla 2880)
 	truck_expiration_game_time_max: 3600	# 2.5 days (vanilla 4320)
 
-	# DDE: counted per generated batch, so about three batches are live at once (~54 trucks,
-	# vanilla ~30) - more variety to shop from, without being able to buy up the whole lot
-	truck_count_min: 12	# vanilla 12
-	truck_count_max: 24	# vanilla 18
+	# DDE: bigger market than vanilla for real variety to shop from. This is the stock each
+	# dealer group is topped back up to on every generation, not a per-batch count.
+	truck_count_min: 18	# vanilla 12
+	truck_count_max: 36	# vanilla 18
 
 	# DDE: catalog access now scales with career level - see dealer_truck_offer_levels/ratios below
 	dealer_truck_offer_ratios[]: 0.40
