@@ -2,7 +2,7 @@ SiiNunit
 {
 accessory_transmission_data : ato3512f_au.volvo.fh16_2012.transmission
 {
-	name: "@@transmission_i_shift_ato3512f_aso_ulc@@"
+	name: "@@transmission_ishift_ato3512f_aso_ulc@@"
 	# DDE: vanilla 13000 - G2 (2012 FH gen 4) x1.24
 	price: 16120
 	unlock: 16

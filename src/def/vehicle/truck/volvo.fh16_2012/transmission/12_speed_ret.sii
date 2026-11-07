@@ -2,7 +2,7 @@ SiiNunit
 {
 accessory_transmission_data : 12_speed_r.volvo.fh16_2012.transmission
 {
-	name: "@@transmission_i_shift_at2812d_r@@"
+	name: "@@transmission_ishift_at2812d_r@@"
 	# DDE: vanilla 16000 - G2 (2012 FH gen 4) x1.24
 	price: 19840
 	unlock: 0
