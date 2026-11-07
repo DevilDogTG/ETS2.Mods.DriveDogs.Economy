@@ -77,10 +77,9 @@ What changes:
   bargain can mean a genuinely compromised truck, not just a dusty one.
 - Prices react much more strongly to a truck's condition - both the repairable wear and the
   permanent damage now swing the price a lot more than in vanilla.
-- The market is bigger (around 50 trucks at once, vanilla around 30) and a fresh batch of 12-24
-  arrives every half to one day, so there's usually something new to look at between jobs without
-  being able to buy up the whole lot in one sitting. Listings stay up 2-2.5 days, so sleeping or
-  skipping time won't empty the market.
+- The market is bigger (18-36 trucks at once) and refreshes about twice a day, so there's
+  usually something new to look at between jobs without being able to buy up the whole lot in
+  one sitting. Listings stay up 2-2.5 days, so sleeping or skipping time won't empty the market.
 - Individual listings vary more in price than vanilla, so two similar-looking trucks won't
   always cost the same.
 
@@ -252,8 +251,8 @@ documented here as they're added.
 
 [orange]v1.3.4
 [normal]- Fixed the used truck market going empty after a long sleep or time skip. Listings now stay
-  up 2-2.5 in-game days (was 1-1.5), and each refresh brings 12-24 trucks (was 18-36), so the
-  market stays about the same size and still refreshes every half to one day.
+  up 2-2.5 in-game days (was 1-1.5). The market keeps its size and still refreshes every half to
+  one day.
 
 [orange]v1.3.3
 [normal]- Fixed the crash on ETS2 1.62. The pack replaced two game files with their 1.61 versions,
