@@ -2,17 +2,19 @@ SiiNunit
 {
 used_vehicle_assortment_config : .config
 {
-	# DDE: faster refresh than vanilla but keeps vanilla's ~1:1.5 generation:expiration ratio,
-	# so checking between jobs finds fresh stock without making bulk-buying trivial
+	# DDE: faster refresh than vanilla, so checking between jobs finds fresh stock
 	truck_generation_game_time_min: 720	# 0.5 days (vanilla 1440)
 	truck_generation_game_time_max: 1440	# 1 day (vanilla 2160)
 
-	truck_expiration_game_time_min: 1440	# 1 day (vanilla 2880)
-	truck_expiration_game_time_max: 2160	# 1.5 days (vanilla 4320)
+	# DDE: expiration_min - generation_max = 1 day, so the newest batch always outlives a time
+	# skip (1.3.3's 1-1.5 days let a long skip expire every offer and empty the market)
+	truck_expiration_game_time_min: 2880	# 2 days (vanilla 2880)
+	truck_expiration_game_time_max: 3600	# 2.5 days (vanilla 4320)
 
-	# DDE: bigger market than vanilla for real variety to shop from
-	truck_count_min: 18	# vanilla 12
-	truck_count_max: 36	# vanilla 18
+	# DDE: counted per generated batch, so about three batches are live at once (~54 trucks,
+	# vanilla ~30) - more variety to shop from, without being able to buy up the whole lot
+	truck_count_min: 12	# vanilla 12
+	truck_count_max: 24	# vanilla 18
 
 	# DDE: catalog access now scales with career level - see dealer_truck_offer_levels/ratios below
 	dealer_truck_offer_ratios[]: 0.40

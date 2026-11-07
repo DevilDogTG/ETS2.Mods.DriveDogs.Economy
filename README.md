@@ -5,7 +5,7 @@ reviewed field-by-field against vanilla (and, where one exists, a reference mod)
 written — this isn't a bundle of other people's mods, it's a set of deliberate design decisions,
 each one documented.
 
-**Status: v1.3.3.** Targets ETS2 **1.62.1.0**, no paid DLC required — every change is to
+**Status: v1.3.4.** Targets ETS2 **1.62.1.0**, no paid DLC required — every change is to
 base-game `def/` files, plus the free per-truck DLC archives for the nine newest truck lines
 (owned by every player).
 
