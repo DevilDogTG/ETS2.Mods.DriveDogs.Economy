@@ -2,7 +2,7 @@ SiiNunit
 {
 accessory_transmission_data : ato3512f_r.volvo.fh_2021.transmission
 {
-	name: "@@transmission_i_shift_ato3512f_r@@"
+	name: "@@transmission_ishift_ato3512f_r@@"
 	# DDE: vanilla 17000 - G3 (2020 FH gen 5) x1.39
 	price: 23630
 	unlock: 10

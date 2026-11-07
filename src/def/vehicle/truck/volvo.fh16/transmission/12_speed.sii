@@ -2,7 +2,7 @@ SiiNunit
 {
 accessory_transmission_data : 12_speed.volvo.fh16.transmission
 {
-	name: "@@transmission_i_shift_at2812d@@"
+	name: "@@transmission_ishift_at2812d@@"
 	# DDE: vanilla 10000 - G1 (2009 FH gen 3) x1.09
 	price: 10900
 	unlock: 0

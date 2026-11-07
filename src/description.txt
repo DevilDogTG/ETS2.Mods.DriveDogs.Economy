@@ -249,6 +249,13 @@ documented here as they're added.
 --------------------
 [green]Changelogs
 
+[orange]v1.3.3
+[normal]- Fixed the crash on ETS2 1.62. The pack replaced two game files with their 1.61 versions,
+  which lack 1.62's new Iceland currency (ISK) and the new bus job skills. Both files are now
+  rebuilt on 1.62 with the same Economy settings, and currency exchange rates follow 1.62.
+- Truck parts refreshed for 1.62: the DAF XG+ keeps its new stock roof light, and Volvo I-Shift
+  gearboxes show their 1.62 names. Prices are unchanged.
+
 [orange]v1.3.2
 [normal]- Delivery deadlines tightened: they now assume a 52 km/h average pace (was 45), so long
   jobs keep about 3-5 hours spare at a steady pace instead of 6-10. The easy/medium/hard job mix is

@@ -2,7 +2,7 @@ SiiNunit
 {
 accessory_transmission_data : ato3812gr_au.volvo.fh_2024.transmission
 {
-	name: "@@transmission_i_shift_ato3812g_r_aso_ulc@@"
+	name: "@@transmission_ishift_ato3812g_r_aso_ulc@@"
 	# DDE: vanilla 19000 - G4 (2024) x1.54
 	price: 29260
 	unlock: 16
