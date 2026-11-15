@@ -11,6 +11,11 @@ This writes a whole-file copy of the vanilla driver_names.sii with every vanilla
 a vanilla portrait of the same gender (vanilla prefixes female names with '+'), cycling through
 the vanilla faces so repeats spread evenly. No new art.
 
+Vanilla ships the list only under en_gb; other languages fall back to it. The same file is also
+written under every locale in OUT_LOCALES, so a language that the player uses doesn't depend on
+that fallback (Av_Mark's "Additional AI Drivers" works only in English (US), the default
+English variant).
+
 Names follow vanilla's style ("First L."), drawn from first names across the map's countries,
 about one in four female as in vanilla, and never repeat a vanilla or another new name.
 Output is deterministic: no randomness, same input gives the same files.
@@ -26,6 +31,8 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 SRC = REPO / 'src'
 NAMES_REL = Path('locale/en_gb/driver_names.sii')
+# Identical copies of the list; en_gb is vanilla's own location and must stay first.
+OUT_LOCALES = ('en_gb', 'en_us')
 PORTRAIT_REL = Path('material/ui/driver')
 
 DEFAULT_TOTAL = 1000
@@ -203,9 +210,10 @@ def write(vanilla_text, vanilla_count, drivers, out: Path):
     block += [f'\tname[{i}]: "{name}"' for i, name, _ in drivers]
     m = UNIT_END_RE.search(vanilla_text)
     text = vanilla_text[:m.start()] + '\n' + '\n'.join(block) + vanilla_text[m.start():]
-    names_path = out / NAMES_REL
-    names_path.parent.mkdir(parents=True, exist_ok=True)
-    names_path.write_text(text, encoding='utf-8-sig', newline='\n')
+    for locale in OUT_LOCALES:
+        names_path = out / 'locale' / locale / NAMES_REL.name
+        names_path.parent.mkdir(parents=True, exist_ok=True)
+        names_path.write_text(text, encoding='utf-8-sig', newline='\n')
 
     wanted = {f'{i}.mat' for i, _, _ in drivers}
     for sub, prefix in ((PORTRAIT_REL, '/material/ui/driver'), (PORTRAIT_REL / 'small', '/material/ui/driver/small')):
