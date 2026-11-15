@@ -53,7 +53,9 @@ stay vanilla: the system removes a cap, it does not change what a driver costs o
 **Easier:** The company can keep growing into free garage slots; nothing about driver pay changes,
 so the balance of the other systems holds.
 **Harder:** Rerun the generator on every game minor version (as for the 1.62 rebase), or new vanilla
-drivers stay hidden. Other driver-count mods must be disabled.
+drivers stay hidden. Other driver-count mods must be disabled. A profile that has hired a driver past
+`name[354]` depends on this mod: without it those drivers have no name or portrait (what the game
+does then is untested), so the pool size can grow later but should never shrink.
 **Follow-up:** Confirm in a playtest that an existing save picks up the new names (SCS's own
 additions reached existing saves, but it was not verified with a mod), that hiring past 355 works,
 and that the reused portraits show in the agency and company screens.
