@@ -23,6 +23,12 @@ driver-count key.
   saves already employ. Player reports on recent versions are mixed. Not reviewed in detail (the
   Workshop pages could not be read at the time).
 
+Av_Mark's "Additional AI Drivers for ETS2" (ets2.lt, posted 2024-12, "beta", game 1.51-1.53)
+was also reviewed from its page: 1,900 drivers in total with new portrait art (30 MB); by its own
+notes it works only in English (US), breaks in English (UK), and shows a missing-texture "pink
+square" when a new face is the profile photo. Its method and whether it keeps vanilla's drivers
+are not described, and it is two game versions out of date.
+
 ### Option B: Extend the list with new portrait art
 - **Pros:** Every driver has their own face.
 - **Cons:** Hundreds of new portraits to make and ship (two sizes each); this repo has no art
@@ -48,6 +54,10 @@ style with first names from every region of the map, interleaved so neighbouring
 countries; every fourth new driver is female (24.9% overall, vanilla 24.8%); no new name repeats a
 vanilla or another new name. Driver economics (hire cost, salary, level cap, revenue coefficients)
 stay vanilla: the system removes a cap, it does not change what a driver costs or earns.
+The list ships under `en_gb` (vanilla's location, the fallback of every language) and as an
+identical `en_us` copy: Av_Mark's language notes suggest the game prefers the current language's
+list when one exists, and the maintainer plays in English (US). Because every new portrait points at a vanilla texture, the UI's index-built paths
+(`/material/ui/driver/%0.mat`, also the main-menu profile photo) always resolve.
 
 ## Consequences
 **Easier:** The company can keep growing into free garage slots; nothing about driver pay changes,
