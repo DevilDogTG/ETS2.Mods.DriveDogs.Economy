@@ -54,9 +54,10 @@ style with first names from every region of the map, interleaved so neighbouring
 countries; every fourth new driver is female (24.9% overall, vanilla 24.8%); no new name repeats a
 vanilla or another new name. Driver economics (hire cost, salary, level cap, revenue coefficients)
 stay vanilla: the system removes a cap, it does not change what a driver costs or earns.
-The list ships under `en_gb` (vanilla's location, the fallback of every language) and as an
-identical `en_us` copy: Av_Mark's language notes suggest the game prefers the current language's
-list when one exists, and the maintainer plays in English (US). Because every new portrait points at a vanilla texture, the UI's index-built paths
+The list ships under `en_gb` (vanilla's location) and as an identical `en_us` copy. The `en_us`
+copy is required, not a precaution: in English (US) the game ignores a mod's `en_gb` list and falls
+back to vanilla's (a build without `en_us` left the pool at 355, see Follow-up). Other languages
+are not shipped and keep 355. Because every new portrait points at a vanilla texture, the UI's index-built paths
 (`/material/ui/driver/%0.mat`, also the main-menu profile photo) always resolve.
 
 ## Consequences
@@ -66,6 +67,11 @@ so the balance of the other systems holds.
 drivers stay hidden. Other driver-count mods must be disabled. A profile that has hired a driver past
 `name[354]` depends on this mod: without it those drivers have no name or portrait (what the game
 does then is untested), so the pool size can grow later but should never shrink.
-**Follow-up:** Confirm in a playtest that an existing save picks up the new names (SCS's own
-additions reached existing saves, but it was not verified with a mod), that hiring past 355 works,
-and that the reused portraits show in the agency and company screens.
+**Follow-up (playtest 2026-11-15, ETS2 1.62, English (US)):** The save stores each driver as a
+`driver_ai` unit named `driver.<index>`, with `economy.driver_pool` (unhired) and
+`economy.drivers_offer` (one slot per unlocked agency). The first installed build lacked `en_us`, so
+the existing save (all 355 vanilla drivers hired) stayed at 354 units with an empty pool and empty
+agencies, through an economy reset and several game days. With `en_us` it gained `driver.355` to
+`driver.999` on the first load, with no reset: 999 units, all 93 agency slots filled, 552 left in the
+pool. The new drivers show in the agency list. Hiring one past 355 and the company screens were not
+checked separately.

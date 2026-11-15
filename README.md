@@ -58,9 +58,11 @@ per system, written for non-modders).
   **Restore Old Trucks** (Baldy09, Workshop 3097032249) must be disabled alongside it: it ships
   older copies of the current Scania R/S 2016 and Renault T presets that point at parts 1.61
   renamed.
-- Bigger Driver Pool replaces the whole `locale/en_gb/driver_names.sii` (vanilla's only copy;
-  other languages fall back to it) and ships an identical `locale/en_us/` copy so English (US)
-  doesn't depend on that fallback. Any other driver-count mod (e.g. the old Workshop "570 Drivers
+- Bigger Driver Pool replaces the whole `locale/en_gb/driver_names.sii` (vanilla's only copy)
+  and ships an identical `locale/en_us/` copy. Both are needed: with the game in English (US), a
+  mod's `en_gb` list alone is ignored and the game falls back to vanilla's 355 names (seen in the
+  1.4.0 playtest). Other languages are not shipped, so they keep 355. Existing saves pick up the
+  new drivers on load, with no economy reset. Any other driver-count mod (e.g. the old Workshop "570 Drivers
   Limit", or Av_Mark's "Additional AI Drivers", which ships for English (US)) must be disabled:
   whichever loads higher wins the entire list. After a game update, rerun
   `tools/generate_driver_pool.py` against the new base: a patch that adds vanilla drivers would
