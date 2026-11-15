@@ -242,12 +242,34 @@ Compatibility: don't run "Restore Old Trucks" (Workshop) alongside this pack. It
 copies of the current Scania R/S 2016 and Renault T dealer trucks that would override the
 base game's.
 --------------------
+[orange]Bigger Driver Pool
+[normal]The base game only has 355 drivers you can ever hire. Once they all work for you, the
+recruitment agencies stay empty, however many free garage slots you have. The pool now holds
+1,000 drivers, enough to fill about 200 large garages.
+
+What changes:
+- 645 more drivers can be hired at the recruitment agencies, up to 1,000 in total.
+- Their names come from across the map, and about one in four are women, as in the base game.
+- They use the base game's portraits, so up to three drivers can share a face.
+
+What does NOT change:
+- The base game's 355 drivers, including the ones already working for you.
+- Hiring cost, salaries, skills, and how much drivers earn.
+- Garage sizes: every driver still needs a free garage slot.
+
+Compatibility: don't run other mods that raise the driver limit alongside this pack. Only one
+driver list can be active, so whichever mod loads higher replaces the other's.
+--------------------
 [orange]More sections coming
 [normal]Damage & Wear, Fines & Police, the Used Truck Market, Operating Consequences, Job Types &
-Skills, Cargo Variety, New Truck Prices, and Legacy Trucks at Dealers are the systems in this pack so far. More economy systems will be
-documented here as they're added.
+Skills, Cargo Variety, New Truck Prices, Legacy Trucks at Dealers, and Bigger Driver Pool are the
+systems in this pack so far. More economy systems will be documented here as they're added.
 --------------------
 [green]Changelogs
+
+[orange]v1.4.0
+[normal]- Bigger Driver Pool: your company can hire up to 1,000 drivers (the base game stops at 355).
+  The 645 new drivers use the base game's portraits. Hiring cost and salaries are unchanged.
 
 [orange]v1.3.4
 [normal]- Fixed the used truck market going empty after a long sleep or time skip. Listings now stay
