@@ -259,6 +259,9 @@ What does NOT change:
 
 Compatibility: don't run other mods that raise the driver limit alongside this pack. Only one
 driver list can be active, so whichever mod loads higher replaces the other's.
+
+Important: once you hire any of the new drivers, keep this pack enabled for that profile. Without
+it the game has no name or portrait for them. Back up your profile before you first try it.
 --------------------
 [orange]More sections coming
 [normal]Damage & Wear, Fines & Police, the Used Truck Market, Operating Consequences, Job Types &
